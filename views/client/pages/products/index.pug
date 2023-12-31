@@ -1,4 +1,45 @@
 extends ../../layouts/default
 
 block main
-    h1 Products
+    main.main
+        .page-header.breadcrumb-wrap
+            .container
+                .breadcrumb
+                    a(href='/' rel='nofollow') Home
+                    span
+                    |  Shop
+        section.mt-50.mb-50
+            .container
+                .row
+                    .col-lg-12
+                        .row.product-grid-3
+                            .col-lg-3.col-md-4
+                                .product-cart-wrap.mb-30
+                                    .product-img-action-wrap
+                                        .product-img.product-img-zoom
+                                            a(href='shop-product-right.html')
+                                                img.default-img(src='images/product-2-1.jpg' alt='')
+                                                img.hover-img(src='images/product-2-2.jpg' alt='')
+                                        .product-action-1
+                                            a.action-btn.hover-up(aria-label='Quick view' data-bs-toggle='modal' data-bs-target='#quickViewModal')
+                                                i.fi-rs-search
+                                            a.action-btn.hover-up(aria-label='Add To Wishlist' href='shop-wishlist.html')
+                                                i.fi-rs-heart
+                                            a.action-btn.hover-up(aria-label='Compare' href='shop-compare.html')
+                                                i.fi-rs-shuffle
+                                        .product-badges.product-badges-position.product-badges-mrg
+                                            span.hot Hot
+                                    .product-content-wrap
+                                        .product-category
+                                            a(href='shop-grid-right.html') Music
+                                        h2
+                                            a(href='shop-product-right.html') Colorful Pattern Shirts
+                                        .rating-result(title='90%')
+                                            span
+                                                span 90%
+                                        .product-price
+                                            span $238.85
+                                            span.old-price $245.8
+                                        .product-action-1.show
+                                            a.action-btn.hover-up(aria-label='Add To Cart' href='shop-cart.html')
+                                                i.fi-rs-shopping-bag-add

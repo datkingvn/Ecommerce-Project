@@ -1,6 +1,10 @@
 const express = require('express')
-const route = require('./routes/client/index.route')
+const database = require('./config/database')
 require('dotenv').config()
+
+const route = require('./routes/client/index.route')
+
+database.connect()
 
 const app = express()
 const port = process.env.PORT || 8888
