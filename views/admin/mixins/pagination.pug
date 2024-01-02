@@ -1,0 +1,40 @@
+mixin pagination(pagination)
+    ul.pagination.pagination-sm
+        if (pagination.currentPage > 1)
+            li.page-item.page-indicator
+                button(class="page-link" button-pagination=(pagination.currentPage - 1))
+                    i.la.la-angle-left
+
+        - var maxPagesToShow = 3; // Số lượng trang hiển thị xung quanh trang hiện tại
+        - var startPage, endPage;
+
+        - if (pagination.currentPage === 1 || pagination.currentPage === pagination.totalPages) {
+        -     startPage = 1;
+        -     endPage = maxPagesToShow;
+        - } else {
+        -     startPage = Math.max(1, pagination.currentPage - 1);
+        -     endPage = Math.min(pagination.currentPage + 1, pagination.totalPages);
+        - }
+
+        - if (startPage > 1)
+            li.page-item
+                button(class="page-link" button-pagination=1) 1
+            if (startPage > 2)
+                li.page-item
+                    span.page-link ...
+
+        - for (var i = startPage; i <= endPage; i++)
+            li(class=`page-item ${pagination.currentPage === i ? "active" : ""}`)
+                button(class="page-link" button-pagination=i) #{i}
+
+        if (pagination.currentPage === 1 || pagination.currentPage === pagination.totalPages)
+            if (pagination.totalPages > maxPagesToShow)
+                li.page-item
+                    span.page-link ...
+                li.page-item
+                    button(class="page-link" button-pagination=pagination.totalPages) #{pagination.totalPages}
+
+        if (pagination.currentPage < pagination.totalPages)
+            li.page-item.page-indicator
+                button(class="page-link" button-pagination=(pagination.currentPage + 1))
+                    i.la.la-angle-right

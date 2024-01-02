@@ -1,6 +1,7 @@
 extends ../../../admin/layouts/default
 include ../../mixins/filter-status
 include ../../mixins/search
+include ../../mixins/pagination
 
 block main
     .card.mb-3
@@ -20,14 +21,14 @@ block main
     .card
         .card-body
             .table-responsive
-                table#example.display.table(style='min-width: 845px')
+                table.table.table-hover.table-responsive-sm
                     thead
                         tr
                             th STT.
                             th TÊN SẢN PHẨM
                             th GIÁ TIỀN
                             th TRẠNG THÁI
-                            th HÀNH ĐỘNG
+                            th
                     tbody
                         each item, index in products
                             tr
@@ -43,14 +44,15 @@ block main
                                 td #{item.price} VND
                                 td
                                     if(item.status === "active")
-                                        span.badge.badge-success.light.border-0 Hoạt động
+                                        span.badge.light.badge-success Hoạt động
                                     else
-                                        span.badge.badge-danger.light.border-0 Dừng hoạt động
+                                        span.badge.light.badge-danger Dừng hoạt động
                                 td
-                                    button.btn.btn-primary.btn-sm(type='button')
-                                        i.fas.fa-edit.me-2
-                                        | Edit
-                                    span(style='margin-left: 10px;')
-                                    button.btn.btn-danger.btn-sm(type='button')
-                                        i.fas.fa-trash-alt.me-2
-                                        | Delete
+                                    .d-flex
+                                        a.btn.btn-primary.shadow.btn-xs.sharp.me-1(href='#')
+                                            i.fa.fa-pencil
+                                        a.btn.btn-danger.shadow.btn-xs.sharp(href='#')
+                                            i.fa.fa-trash
+
+
+    +pagination(pagination)
