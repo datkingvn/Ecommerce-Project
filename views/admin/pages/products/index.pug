@@ -1,0 +1,51 @@
+extends ../../../admin/layouts/default
+
+block main
+    .card.mb-3
+        .card-header
+            | Bộ Lọc và Tìm Kiếm
+        .card-body
+            each item in filterStatus
+                button(class="" +
+                `btn btn-sm ml-1 btn-outline-success ${item.class}`
+                    button-status=item.status) #{item.name}
+                span(style='margin-left: 10px;')
+
+
+    .card
+        .card-body
+            .table-responsive
+                table#example.display.table(style='min-width: 845px')
+                    thead
+                        tr
+                            th STT.
+                            th TÊN SẢN PHẨM
+                            th GIÁ TIỀN
+                            th TRẠNG THÁI
+                            th HÀNH ĐỘNG
+                    tbody
+                        each item, index in products
+                            tr
+                                td #{index + 1}
+                                td
+                                    .products
+                                        img.avatar.avatar-sm(src=item.thumbnail alt=item.title)
+                                        div
+                                            h6
+                                                a(href='javascript:void(0)') #{item.title}
+                                            span 24 Apr 2021
+
+                                td #{item.price} VND
+                                td
+                                    if(item.status === "active")
+                                        span.badge.badge-success.light.border-0 Hoạt động
+                                    else
+                                        span.badge.badge-danger.light.border-0 Dừng hoạt động
+                                td
+                                    button.btn.btn-primary.btn-sm(type='button')
+                                        i.fas.fa-edit.me-2
+                                        | Edit
+                                    span(style='margin-left: 10px;')
+                                    button.btn.btn-danger.btn-sm(type='button')
+                                        i.fas.fa-trash-alt.me-2
+                                        | Delete
