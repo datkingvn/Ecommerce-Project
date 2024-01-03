@@ -1,6 +1,7 @@
 const express = require('express')
 const database = require('./config/database')
 const systemConfig = require('./config/system')
+var methodOverride = require('method-override')
 require('dotenv').config()
 
 const routeAdmin = require('./routes/admin/index.route')
@@ -16,6 +17,7 @@ app.set('views', './views')
 app.set('view engine', 'pug')
 
 app.use(express.static('public'))
+app.use(methodOverride('_method'))
 
 // App Locals Variables
 app.locals.prefixAdmin = systemConfig.prefixAdmin

@@ -322,28 +322,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
 @media (prefers-reduced-motion: no-preference) {
   :root {
     scroll-behavior: smooth; } }
-
-body {
-    font-family: 'Roboto', Arial, sans-serif;
-}
-
-h1, h2, h3, h4, h5, h6 {
-    font-family: 'Roboto', Arial, sans-serif;
-}
-
-p {
-    font-family: 'Roboto', Arial, sans-serif;
-}
-
 th, td {
-    font-family: 'Roboto', Arial, sans-serif;
-}
-
-.button {
-    font-family: 'Roboto', Arial, sans-serif;
-}
-
-.label {
     font-family: 'Roboto', Arial, sans-serif;
 }
 body {
