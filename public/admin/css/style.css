@@ -247,6 +247,9 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
    * Copyright 2011-2022 Twitter, Inc.
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
    */
+body {
+    font-family: "Roboto", Arial, sans-serif;
+}
 :root {
   --bs-blue: #5e72e4;
   --bs-indigo: #6610f2;
@@ -322,9 +325,6 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
 @media (prefers-reduced-motion: no-preference) {
   :root {
     scroll-behavior: smooth; } }
-th, td {
-    font-family: 'Roboto', Arial, sans-serif;
-}
 body {
   margin: 0;
   font-family: var(--bs-body-font-family);

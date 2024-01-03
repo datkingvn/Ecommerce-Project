@@ -33,7 +33,7 @@ function getUrlParams(dParam)
     } */
 	
 	dzSettingsOptions = {
-		typography: "poppins",
+		typography: "Roboto",
 		version: "light",
 		layout: "vertical",
 		primary: "color_1",
