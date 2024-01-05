@@ -98,17 +98,32 @@ if (formChangeMulti) {
         const checkboxMulti = document.querySelector("[checkbox-multi]");
         const inputsChecked = document.querySelectorAll("input[name='id']:checked");
 
+        const typeChange = e.target.elements.type.value;
+        if (typeChange === "delete-all") {
+            const isConfirm = confirm("Bạn có muốn xoá những sản phẩm này?");
+
+            if (!isConfirm) {
+                return;
+            }
+        }
+
         if (inputsChecked.length > 0) {
             let ids = [];
 
-            const inputIds = formChangeMulti.querySelector("input[name='ids']")
+            const inputIds = formChangeMulti.querySelector("input[name='ids']");
 
             inputsChecked.forEach(input => {
                 const id = input.value;
-                ids.push(id);
-            })
 
-            inputIds.value = ids.join(", ")
+                if (typeChange === "change-position") {
+                    const position = input.closest("tr").querySelector("input[name='position']").value;
+                    ids.push(`${id}-${position}`);
+                } else {
+                    ids.push(id);
+                }
+            });
+
+            inputIds.value = ids.join(", ");
 
             formChangeMulti.submit();
         } else {
@@ -116,7 +131,6 @@ if (formChangeMulti) {
         }
     });
 }
-// End Form Change Multi
 
 // Delete Item
 const buttonDelete = document.querySelectorAll("[button-delete]");
@@ -140,3 +154,16 @@ if (buttonDelete.length > 0) {
     });
 }
 // End Delete Item
+
+// Show Alert
+setTimeout(function () {
+    let showAlert = document.querySelector("[show-alert]");
+    if (showAlert) {
+        const time = parseInt(showAlert.getAttribute("data-time"));
+
+        setTimeout(() => {
+            showAlert.classList.add("alert-hidden")
+        }, time)
+    }
+})
+// End Show Alert

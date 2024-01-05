@@ -4,8 +4,11 @@ mixin form-change-multi(path)
             .input-group
                 .input-group-prepend.dropdown(class="bootstrap-select default-select form-control wide bleft")
                     select(name="type", class="default-select form-control wide bleft")
+                        option(disable selected) Chọn hành động...
                         option(value='active') Hoạt động
                         option(value='inactive') Dừng hoạt động
+                        option(value='delete-all') Xoá tất cả
+                        option(value='change-position') Thay đổi vị trí
 
                 input(type="text", name="ids", class="form-control d-none")
 

@@ -35,7 +35,10 @@ module.exports.index = async (req, res) => {
     )
     // End Pagination
 
-    const products = await Product.find(find).limit(objectPagination.limitItems).skip(objectPagination.skip)
+    const products = await Product.find(find)
+        .sort({position: "desc"})
+        .limit(objectPagination.limitItems)
+        .skip(objectPagination.skip)
 
     res.render('admin/pages/products/index.pug', {
         pageTitle: "List Products",
@@ -54,6 +57,8 @@ module.exports.changeStatus = async (req, res) => {
 
     await Product.updateOne({_id: id}, {status: status})
 
+    req.flash('success', 'Cập nhật trạng thái thành công!');
+
     res.redirect("back")
 }
 
@@ -65,9 +70,25 @@ module.exports.changeMulti = async (req, res) => {
     switch (type) {
         case "active":
             await Product.updateMany({_id: { $in: ids } }, {status: "active"})
+            req.flash('success', `Cập nhật trạng thái ${ids.length} sản phẩm thành công!`);
             break;
         case "inactive":
             await Product.updateMany({_id: { $in: ids } }, {status: "inactive"})
+            req.flash('success', `Cập nhật trạng thái ${ids.length} sản phẩm thành công!`);
+            break;
+        case "delete-all":
+            await Product.updateMany({_id: { $in: ids } }, {deleted: true , deletedAt: new Date()})
+            break;
+        case "change-position":
+            for (const item of ids) {
+                let [id, position] = item.split("-")
+                position = parseInt(position)
+
+                await Product.updateOne({_id: id}, {position: position})
+            }
+            // await Product.updateMany({_id: { $in: ids } }, {deleted: true , deletedAt: new Date()})
+            break;
+        default:
             break;
     }
 

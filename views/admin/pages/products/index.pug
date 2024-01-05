@@ -3,9 +3,11 @@ include ../../mixins/filter-status
 include ../../mixins/search
 include ../../mixins/pagination
 include ../../mixins/form-change-multi
+include ../../mixins/alert
 
 block main
     .card.mb-3
+        +alert-success(4500)
         .card-header
             | Bộ Lọc và Tìm Kiếm
         .card-body
@@ -34,6 +36,7 @@ block main
                             th STT.
                             th TÊN SẢN PHẨM
                             th GIÁ TIỀN
+                            th VỊ TRÍ
                             th TRẠNG THÁI
                             th
                     tbody
@@ -51,6 +54,13 @@ block main
                                             span 24 Apr 2021
 
                                 td #{item.price} VND
+                                td
+                                    input(type="number"
+                                        value=item.position
+                                        min="1"
+                                        class="form-control form-control-sm"
+                                        style="width: 60px"
+                                        name="position")
                                 td
                                     if(item.status === "active")
                                         a(href="javascript:;"
